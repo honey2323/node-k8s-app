@@ -9,7 +9,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $DOCKER_IMAGE .'
+                sh 'cd node-js-sample && docker build -t $DOCKER_IMAGE .'
             }
         }
 
@@ -24,8 +24,8 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                sh 'kubectl apply -f deployment.yaml'
-                sh 'kubectl apply -f service.yaml'
+                sh 'kubectl apply -f node-js-sample/deployment.yaml'
+                sh 'kubectl apply -f node-js-sample/service.yaml'
             }
         }
     }
