@@ -24,10 +24,10 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                sh 'kubectl apply -f deployment.yaml --validate=false'
-                sh 'kubectl apply -f service.yaml --validate=false'
+                sh 'kubectl get nodes'
+                sh 'kubectl apply -f deployment.yaml'
+                sh 'kubectl apply -f service.yaml'
             }
         }
     }
 }
-
